@@ -7,9 +7,11 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    experience = models.TextField()
-    skills = models.TextField()
-    goals = models.TextField()  
+    documenttype = models.CharField(max_length=50)
+    document = models.CharField(max_length=50) 
+    civilstatus = models.CharField(max_length=50) 
+    ethnicgroup = models.CharField(max_length=50)
+    genre = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to='avatars', blank=True)
 
     class Meta:

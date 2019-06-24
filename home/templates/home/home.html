@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+    {% block head %}         
+        {% load static %}
+        <title>Home</title>
+    {% endblock %}
+    
+    {% block body %}
+        <section class="section">
+            <div class="container">
+                <h3>Contact</h3>
+                <form method ="POST">
+                    {{form.as_p}}
+                    {% csrf_token %}
+                    <div>
+                        <button class="btn" type="submit">send</button>
+                    </div>
+                </form>
+                {{text}}
+            </div>
+        </section>
+    {% endblock %}  
+    pribote

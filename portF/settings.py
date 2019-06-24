@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ckeditor',
     # importamos usuarios
     'accounts',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -131,7 +132,7 @@ STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL='/account/'
+LOGIN_REDIRECT_URL='/home/'
 
 LOGIN_URL='/account/login'
 

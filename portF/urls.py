@@ -18,8 +18,8 @@ from django.contrib import admin
 #para trabajar con media
 from django.conf import settings
 from django.conf.urls.static import static
-
 from django.urls import path, include
+
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 from .views import login_redirect
@@ -28,7 +28,8 @@ urlpatterns = [
     path('', login_redirect, name='login_redirect'),
     path('admin/', admin.site.urls),
     #se agregan urls de
-    path('account/', include('accounts.urls', namespace='accounts')), 
+    path('account/', include('accounts.urls', namespace='accounts')),
+    path('home/', include('home.urls', namespace='home')) 
     # path('reset-password/', PasswordResetView.as_view(), name='reset-password'),
     # path('reset-password/done', PasswordResetDoneView.as_view(), name='password_reset_done'), 
     # path('reset-password/confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'), 

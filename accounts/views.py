@@ -5,7 +5,7 @@ from django.contrib.auth import update_session_auth_hash
 #decorador para validar sesion
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegistrationForm, EditProfileform
+from .forms import RegistrationForm, EditProfileform, InfoForm
 
 # Create your views here.
 
@@ -25,12 +25,24 @@ def Profile(request):
     return render(request, 'accounts/profile.html', args)
 
 @login_required
+def Info(request):
+    if request.method == 'POST':
+        form = InfoForm(request.POST, instance=request.user.userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:profile')
+    else:
+        form = InfoForm(instance=request.user.userprofile)
+        args = {'form':form}
+    return render(request, 'accounts/info.html', args)
+
+@login_required
 def Edit(request):
     if request.method == 'POST':
         form = EditProfileform(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('/account/profile')
+            return redirect('accounts:profile')
     else:
         form = EditProfileform(instance=request.user)
         args = {'form':form}
@@ -43,9 +55,9 @@ def ChangePassword(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('/account/profile')
+            return redirect('accounts:profile')
         else:
-            return redirect('/account/changepassword')
+            return redirect('accounts:changepassword')
     else:
         form = PasswordChangeForm(user=request.user)
         args = {'form':form}

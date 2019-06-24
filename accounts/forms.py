@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
+from .models import UserProfile
+
 #cre formulariode registro personalizado HEREDANDO DE USERCREATIONFORM
 class RegistrationForm(UserCreationForm):
     #los campos de más que quiero agregar:
@@ -31,7 +33,17 @@ class EditProfileform(UserChangeForm):
         model = User
         fields = [
             'username',
-            'first_name',
-            'last_name',
-            'password'
+            'email',
+        ]
+
+class InfoForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [            
+            'documenttype',
+            'document',         
+            'civilstatus',
+            'ethnicgroup',
+            'genre',
+            'avatar',
         ]

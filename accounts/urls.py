@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
-from .views import Home, Register, Profile, Edit, ChangePassword
+from .views import Register, Profile, Edit, ChangePassword
 
 # rutas para accounts
 

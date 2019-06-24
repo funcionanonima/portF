@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+    {% block head %}         
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+        <title>Login</title>
+    {% endblock %}
+    
+    {% block body %}
+        <section class="section">
+            <div class="container">
+                <h1>Login</h1>
+                <p>wellcome set you'r data please</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn" type="submit">Log In</button>
+                    <br>
+                    <section class="section">
+                            <a href="/reset-password">Olvidé mi contraseña</a>
+                    </section>
+                </form>
+            </div>
+        </section>
+    {% endblock %}  
+        
+
+
+

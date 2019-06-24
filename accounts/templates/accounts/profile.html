@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+    {% block head %}         
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+        <title>Profile</title>
+    {% endblock %}
+    
+    {% block body %}
+        <section class="section">
+            <div class="container">
+                <h1>Profile {{ user }} </h1>
+                <section class="section">                    
+                    <div class="row">
+                        <form method="POST" class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">                            
+                                    <a href="{{ user.userprofile.avatar.url }}"><img src="{{ user.userprofile.avatar.url }}" alt="nada"></a>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">perm_identity</i>
+                                    <label>{{ user.username }}</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <label>{{user.first_name}}</label>
+                                </div>                                
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">local_post_office</i>
+                                    <label>{{ user.email }}</label>
+                                </div>
+                            </div> 
+                        </form>                        
+                    </div>            
+                </section>
+                <section class="section">
+                    <div><a href="/account/changepassword">Cambiar contraseña</a></div>
+                </section>
+            </div>
+        </section>
+    {% endblock %}  

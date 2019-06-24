@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+    {% block head %}         
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+        <title>Profile</title>
+    {% endblock %}
+    
+    {% block body %}
+        <section class="section">
+            <div class="container">
+                <h1>Profile {{ user.username }} </h1>
+                <section class="section">                    
+                    <div class="row">
+                        <form method="POST" class="col s12">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <div>
+                                <button class="btn" type="submit">Actualizar</button>
+                            </div>
+                        </form>
+                    </div>            
+                </section>
+            </div>
+        </section>
+    {% endblock %}  

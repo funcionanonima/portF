@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+    {% block head %}         
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+        <title>LogOut</title>
+    {% endblock %}
+    
+    {% block body %}
+        <section class="section">
+            <div class="container">
+                <h1>Log Out</h1>
+                You have logged out
+            </div>
+        </section>
+    {% endblock %}  

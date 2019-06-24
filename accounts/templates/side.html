@@ -1,0 +1,59 @@
+{% load static %}
+<section>
+        <nav class="deep-purple accent-4">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="row">
+                        <div class="col s1">
+                            <a href="#!" class="brand-logo Left"><i class="large material-icons">assignment_ind</i></a>
+                        </div>
+                        <div class="col s4">
+                            <ul class="left hide-on-med-and-down">
+                                <li><a href="#">Nosotros</a></li>
+                                <li><a href="#">Curriculum's</a></li>
+                            </ul>
+                        </div>                         
+                        <div class="col s7">
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                                <ul class="right hide-on-med-and-down">
+                                {% if request.user.is_authenticated %}
+                                <li><a href="/account/profile">Profile</a></li>
+                                <li><a href="">Mi Curriculum</a></li>                               
+                                <li><a href="/account/logout">LogOut</a></li>  
+                                {% else %}                                             
+                                <li><a href="/account/login">log In</a></li>                    
+                                <li><a href="/account/register">Register</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
+            </div>                                    
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <section class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s6 offset-s3">
+                            <img src="{% static 'assets/logic.jpg' %}" alt="" class="circle responsive-img">
+                            <h5 class=center>Portfolio</h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr>            
+            <li><a href="">Nosotros</a></li>
+            <li><a href="">Curriculum's</a></li>
+            {% if request.user.is_authenticated %}
+            <hr>
+            <li><a href="/account/profile">Perfil</a></li>            
+            <li><a href="">Mi Curriculum</a></li>         
+            <li><a href="/account/logout">Log Out</a></li>
+            {% else %}
+            <li><a href="/account/login">Log In</a></li>
+            <li><a href="/account/register">Register</a></li>
+            {% endif %}
+        </ul>
+    </section>  
+    <script src="{% static 'js.js' %}" ></script>

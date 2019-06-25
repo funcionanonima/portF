@@ -29,7 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #se agregan urls de
     path('account/', include('accounts.urls', namespace='accounts')),
-    path('home/', include('home.urls', namespace='home')) 
+    path('home/', include('home.urls', namespace='home')),
+    path('briefcase/', include('briefcase.urls', namespace='briefcase')), 
     # path('reset-password/', PasswordResetView.as_view(), name='reset-password'),
     # path('reset-password/done', PasswordResetDoneView.as_view(), name='password_reset_done'), 
     # path('reset-password/confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'), 

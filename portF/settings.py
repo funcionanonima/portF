@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # importamos usuarios
     'accounts',
     'home',
+    'briefcase',
 ]
 
 MIDDLEWARE = [

@@ -19,7 +19,7 @@
                                 {% if request.user.is_authenticated %}
                                 <!-- Dropdown Trigger -->                                
                                 <li><a href="">Mi Curriculum</a></li>  
-                                <li><a class='dropdown-trigger' href='#' data-target='acc'>Profile</a></li>                             
+                                <li><a class='dropdown-trigger' href='#' data-target='acc'>{{user.username}}</a></li>                             
                                 <li><a class='red btn' href="/account/logout">LogOut</a></li>  
                                 {% else %}                                             
                                 <li><a class='dropdown-trigger' href='#' data-target='act'>Account</a></li>
@@ -38,11 +38,13 @@
             <ul id='acc' class='dropdown-content'>
                 <li><a href="{% url 'accounts:profile' %}">Profile</a></li>
                 <li><a href="{% url 'accounts:info' %}">User Data</a></li>
+                <li><a href="{% url 'briefcase:studies' %}">Studies</a></li>
             </ul> 
             <!-- Dropdown Structure -->
             <ul id='acc1' class='dropdown-content'>
                 <li><a href="{% url 'accounts:profile' %}">Profile</a></li>
                 <li><a href="{% url 'accounts:info' %}">User Data</a></li>
+                <li><a href="{% url 'briefcase:studies' %}">Studies</a></li>
             </ul>      
             <ul id='act1' class='dropdown-content'>
                 <li><a href="{% url 'accounts:register' %}">Register</a></li>
@@ -63,7 +65,7 @@
             </section>
             <hr>            
             <li><a href="">Nosotros</a></li>
-            <li><a href="">Curriculum's</a></li>
+            <li><a href="#">Curriculum's</a></li>
             {% if request.user.is_authenticated %}
             <hr>             
             <li><a href="">Mi Curriculum</a></li>

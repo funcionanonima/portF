@@ -15,7 +15,9 @@
                         <form method="POST" class="col s12">
                             {% csrf_token %}
                             <div class="">
-                                <img src="{{user.userprofile.avatar.url}}" alt="">
+                                {% if user.userprofile.avatar %}                           
+                                    <a href="{{ user.userprofile.avatar.url }}"><img src="{{ user.userprofile.avatar.url }}" alt="nada"></a>
+                                {% endif %}
                                 {{form.as_p}}
                             </div> 
                             <div>

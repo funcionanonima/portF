@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
-from .models import Studies
+from .models import Studies, Experience
 
-from .forms import AddStudyForm
+from .forms import AddStudyForm, AddExperience
 
 # Create your views here.
 class StudyMain(TemplateView):
@@ -39,4 +39,17 @@ class StudyMain(TemplateView):
             return redirect('briefcase:studies')
         
         args = {'form':form}
+        return render(request, self.template_name, args)
+
+class ExperienceMain(TemplateView):
+    template_name = 'experience/experience.html'
+    
+    def get(self, request, id=None):
+        if id:
+            exp = Experience.objects.get(id=id)
+            form = AddExperience(instance=exp)
+        else:
+            form = AddExperience()
+        exp = Experience.objects.all()
+        args = {'form':form, 'exp':exp}
         return render(request, self.template_name, args)

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Studies
+from .models import Studies, Experience
 
 class AddStudyForm(forms.ModelForm):
     """formulario para mostrar estudios"""
@@ -11,6 +11,18 @@ class AddStudyForm(forms.ModelForm):
             'name',
             'gradedate',
             'school',
+            'show',
+        )
+
+class AddExperience(forms.ModelForm):
+    """formulario para agregar una nueva "esperiencia"""
+    class Meta:
+        model = Experience
+        fields = (
+            'appointment',
+            'startdate',
+            'enddate',
+            'company',
             'show',
         )
             

@@ -1,3 +1,4 @@
+"""Metodos para cuenta de usuario"""
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import PasswordChangeForm
 #modulo para evitar que se cere sesion al cambiar contraseña
@@ -9,23 +10,26 @@ from .forms import RegistrationForm, EditProfileform, InfoForm
 
 # Create your views here.
 
-def Register(request):
-    if request.method == 'POST': 
+def register(request):
+    """metodo de registro  usuario"""
+    if request.method == 'POST':
         form = RegistrationForm(request.POST) 
-        if form.is_valid(): 
-            form.save() 
+        if form.is_valid():
+            form.save()
         return redirect('home:home') 
-    else: 
-        form = RegistrationForm() 
-    return render(request,'accounts/register.html',{'form':form})
+    else:
+        form = RegistrationForm()
+    return render(request, 'accounts/register.html', {'form':form})
 
 @login_required
-def Profile(request):
+def profile(request):
+    """metodo para acceder a la informacion de perfil del usuario"""
     args = {'user':request.user}
     return render(request, 'accounts/profile.html', args)
 
 @login_required
-def Info(request):
+def info(request):
+    """metodo para editar y mostrar informacion de usuario"""
     if request.method == 'POST':
         form = InfoForm(request.POST, instance=request.user.userprofile)
         if form.is_valid():
@@ -37,9 +41,10 @@ def Info(request):
     return render(request, 'accounts/info.html', args)
 
 @login_required
-def Edit(request):
+def edit(request):
+    """metodo para editar y mostrar informaciion personal de usuario"""
     if request.method == 'POST':
-        form = EditProfileform(request.POST, instance=request.user)
+        form = EditProfileform(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('accounts:profile')
@@ -49,7 +54,8 @@ def Edit(request):
     return render(request, 'accounts/edit.html', args)
 
 @login_required
-def ChangePassword(request):
+def changepassword(request):
+    """metodo para cambiar contraseña"""
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
         if form.is_valid():

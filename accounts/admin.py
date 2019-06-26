@@ -3,7 +3,5 @@ from .models import UserProfile
 
 # Register your models here.
 
-
-
 admin.site.register(UserProfile)
-admin.site.site_header='Admin'
+admin.site.site_header = 'Admin'

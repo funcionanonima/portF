@@ -10,8 +10,12 @@ class StudyMain(TemplateView):
     template_name='studies/studies.html'
 
 # metodo get para traer el formulario
-    def get(self, request):
-        form = AddStudyForm()
+    def get(self, request, id=None):
+        if id:
+            studies = Studies.objects.get(id=id)
+            form = AddStudyForm(instance=studies)
+        else:
+            form = AddStudyForm()
         studies = Studies.objects.filter(user=request.user)
         args = {
             'form':form,

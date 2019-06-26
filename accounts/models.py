@@ -15,11 +15,11 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to='avatars', blank=True)
 
     class Meta:
-        verbose_name='Perfil usuario'
-        verbose_name_plural='Perfiles de usuario'
+        verbose_name = 'Perfil usuario'
+        verbose_name_plural = 'Perfiles de usuario'
 
     def __str__(self):
-        return self.user.username  
+        return self.user.username
 
 def create_profile(sender, **kwargs):
     #si el usuario es creado..

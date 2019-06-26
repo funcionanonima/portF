@@ -130,12 +130,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL='/home/'
+LOGIN_REDIRECT_URL = '/home/'
 
-LOGIN_URL='/account/login'
+LOGIN_URL = '/account/login'
 
 LOGIN_EXEMPT_URLS=(
     'account/login/'

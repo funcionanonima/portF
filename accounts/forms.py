@@ -16,16 +16,14 @@ class RegistrationForm(UserCreationForm):
             'email',
             'username',
             'password1',
-            'password2'
+            'password2',
         ]
     
     #metodo save(), para gaurdar SELF o mejor dicho para gaurdar LOSDATOSDELFORMULARIO en el modelo
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
-
         if commit:
             user.save()
-        
         return user
 
 class EditProfileform(UserChangeForm):
@@ -34,7 +32,7 @@ class EditProfileform(UserChangeForm):
         fields = [
             'username',
             'email',
-        ]
+        ] 
 
 class InfoForm(forms.ModelForm):
     class Meta:

@@ -39,7 +39,7 @@ class InfoForm(forms.ModelForm):
         model = UserProfile
         fields = [            
             'documenttype',
-            'document',         
+            'document',
             'civilstatus',
             'ethnicgroup',
             'genre',

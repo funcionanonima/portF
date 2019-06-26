@@ -31,7 +31,7 @@ def profile(request):
 def info(request):
     """metodo para editar y mostrar informacion de usuario"""
     if request.method == 'POST':
-        form = InfoForm(request.POST, instance=request.user.userprofile)
+        form = InfoForm(request.POST, request.FILES, instance=request.user.userprofile)
         if form.is_valid():
             form.save()
             return redirect('accounts:profile')
@@ -44,7 +44,7 @@ def info(request):
 def edit(request):
     """metodo para editar y mostrar informaciion personal de usuario"""
     if request.method == 'POST':
-        form = EditProfileform(request.POST, request.FILES, instance=request.user)
+        form = EditProfileform(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('accounts:profile')

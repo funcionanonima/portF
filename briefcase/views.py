@@ -85,7 +85,17 @@ class ExperienceMain(TemplateView):
         args = {'form':form}
         return render(request, self.template_name, args)
 
-def curriculum(request):
+def curriculum(request, id=None):
+    if id:
+        params = UserProfile.objects.get(user=id)
+        studies = Studies.objects.filter(user=id)
+        experience = Experience.objects.filter(user=id)
+        args = {
+            'params':params,
+            'studies':studies,
+            'experience':experience,
+        }
+        return render(request, 'curriculum/param.html', args)
     params = UserProfile.objects.get(user=request.user)
     studies = Studies.objects.filter(user=request.user)
     experience = Experience.objects.filter(user=request.user)

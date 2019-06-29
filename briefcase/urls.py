@@ -10,4 +10,5 @@ urlpatterns = [
     path('experiences/', ExperienceMain.as_view(), name='experiences'),
     path('experiences/<int:id>', ExperienceMain.as_view(), name='exp'),
     path('curriculum/', curriculum, name='curriculum'),
+    path('curriculum/<int:id>', curriculum, name='curriculumparam'),
 ]

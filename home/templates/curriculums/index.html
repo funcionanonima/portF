@@ -11,8 +11,8 @@
                 <h1 id="login">Curriculums</h1>
                 <div class="section">
                     <ul>
-                        {% for user in users %}
-                        <li><a href="{% url 'briefcase:curriculumparam' id=user.id %}">{{user}}</a></li>
+                        {% for us in usrs %}
+                        <li><a href="{% url 'briefcase:curriculumparam' id=us.id %}">{{us}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

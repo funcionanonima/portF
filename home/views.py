@@ -28,9 +28,9 @@ class HomeView(TemplateView):
         return render(request, self.template_name, args)
 
 def curriculums(request):
-    users = User.objects.all()
+    usrs = User.objects.all()
     args = {
-        'users':users
+        'usrs':usrs
     }
     return render(request, 'curriculums/index.html', args)
         

@@ -67,7 +67,7 @@
                 </div>
             </section>
             <hr>            
-            <li><a href="#">Curriculum's</a></li>
+            <li><a href="{% url 'home:listcurriculums' %}">Curriculum's</a></li>
             {% if request.user.is_authenticated %}
             <hr>             
             <li><a href="{% url 'briefcase:curriculum' %}">Mi Curriculum</a></li>

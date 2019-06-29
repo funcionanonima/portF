@@ -8,11 +8,11 @@
     {% block body %}
         <section class="section">
             <div class="container">
-                <h1 id="login">Curriculum {{user}}</h1>
+                <h1 id="login">Curriculum {{params.user}}</h1>
                 <div class="section">
                     <div class="row">
                         <div class="col s4">
-                                {% if user.userprofile.avatar %}  
+                            {% if params.avatar %}  
                             <img class="responsive-img" src="{{params.avatar.url}}" alt=""> <br>
                             {% endif %}
                         </div>

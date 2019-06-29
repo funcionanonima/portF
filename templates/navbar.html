@@ -12,7 +12,7 @@
                                 <li><a href="#">Curriculum's</a></li>
                             </ul>
                         </div>                         
-                        <div class="col s7">
+                        <div class="col s6">
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                                 <ul class="right hide-on-med-and-down">
                                 {% if request.user.is_authenticated %}
@@ -53,7 +53,7 @@
             </ul>                   
         </nav>
 
-        <ul class="sidenav" id="mobile-demo">
+        <ul class="sidenav center" id="mobile-demo">
             <section class="section">
                 <div class="container">
                     <div class="row">
@@ -75,7 +75,8 @@
             <li><a class='red btn' href="/account/logout">Log Out</a></li>
             {% else %}
             <!-- Dropdown Trigger -->
-            <a class='dropdown-trigger' href='#' data-target='act1'>Profile</a>
+            <hr>
+            <a class='dropdown-trigger btn' href='#' data-target='act1'>Profile</a>
             {% endif %}
         </ul>
     </section>  

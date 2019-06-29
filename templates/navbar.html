@@ -17,7 +17,7 @@
                                 <ul class="right hide-on-med-and-down">
                                 {% if request.user.is_authenticated %}
                                 <!-- Dropdown Trigger -->                                
-                                <li><a href="">Mi Curriculum</a></li>  
+                                <li><a href="{% url 'briefcase:curriculum' %}">Mi Curriculum</a></li>  
                                 <li><a class='dropdown-trigger' href='#' data-target='acc'>{{user.username}}</a></li>                             
                                 <li><a class='red btn' href="/account/logout">LogOut</a></li>  
                                 {% else %}                                             
@@ -70,7 +70,7 @@
             <li><a href="#">Curriculum's</a></li>
             {% if request.user.is_authenticated %}
             <hr>             
-            <li><a href="">Mi Curriculum</a></li>
+            <li><a href="{% url 'briefcase:curriculum' %}">Mi Curriculum</a></li>
             <li><a class='dropdown-trigger' href="#" data-target='acc1'>Profile</a></li>                   
             <li><a class='red btn' href="/account/logout">Log Out</a></li>
             {% else %}

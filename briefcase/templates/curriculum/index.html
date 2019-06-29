@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+    {% block head %}         
+        {% load static %}
+        <title>Curriculum</title>
+    {% endblock %}
+    
+    {% block body %}
+        <section class="section">
+            <div class="container">
+                <h1 id="login">Curriculum {{user}}</h1>
+                <div class="section">
+                    <div class="row">
+                        <div class="col s4">
+                                {% if user.userprofile.avatar %}  
+                            <img class="responsive-img" src="{{params.avatar.url}}" alt=""> <br>
+                            {% endif %}
+                        </div>
+                        <div class="col s8">
+                            <h3>Informacion Básíca:</h3>
+                            <ul>
+                                <li>Tipo Documento: {{params.documenttype}}</li>
+                                <li>Documento: {{params.document}}</li>
+                                <li>Estado Civil: {{params.civilstatus}}</li>
+                                <li>Grupo Etnico: {{params.ethnicgroup}}</li>
+                                <li>Género: {{params.genre}}</li>
+                            </ul>                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>Estudios:</h3>
+                        {% for study in studies %}
+                        <div class="col s3">                            
+                            <ul>
+                                <li>Título: {{study.name}}</li>
+                                <li>Universidad: {{study.school}}</li>
+                                <li>Fecha Grado: {{study.gradedate}}</li>
+                            </ul>  
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row">
+                            <h3>Experiencia:</h3>
+                            {% for exp in experience %}
+                            <div class="col s6">                                
+                                <ul>
+                                    <li>Cargo: {{exp.appointment}}</li>
+                                    <li>Empresa: {{exp.company}}</li>
+                                    <li>Fecha Inicio: {{exp.startdate}}</li>
+                                    <li>Fecha Inicio: {{exp.enddate}}</li>
+                                </ul>  
+                            </div>
+                            {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}  
+        

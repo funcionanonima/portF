@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from .models import Studies, Experience
+from accounts.models import UserProfile
 
 from .forms import AddStudyForm, AddExperienceForm
 
@@ -20,11 +21,19 @@ class StudyMain(TemplateView):
         args = {
             'form':form,
             'studies':studies,
-        }
+            }
         return render(request, self.template_name, args)
     
 # metodo post para guardar en el modelo
-    def post(self, request):
+    def post(self, request, id=None):
+        if id:
+            form = AddStudyForm(request.POST)
+            if form.is_valid():
+                studyE = form.save(commit=False)
+                studyE.id=id
+                studyE.user=request.user
+                studyE.save()
+            return redirect('briefcase:studies')
         form = AddStudyForm(request.POST)
         if form.is_valid():
         # evito que haga el commit de save()
@@ -50,11 +59,21 @@ class ExperienceMain(TemplateView):
             form = AddExperienceForm(instance=exp)
         else:
             form = AddExperienceForm()
-        exp = Experience.objects.all()
-        args = {'form':form, 'exp':exp}
+        exp = Experience.objects.filter(user=request.user)
+        args = {
+            'form':form, 'exp':exp
+            }
         return render(request, self.template_name, args)
 
-    def post(self, request):
+    def post(self, request, id=None):
+        if id:
+            form = AddExperienceForm(request.POST)
+            if form.is_valid():
+                expe = form.save(commit=False)
+                expe.id=id
+                expe.user=request.user
+                expe.save()
+            return redirect('briefcase:experiences')
         form = AddExperienceForm(request.POST)
         if form.is_valid():
             # detener que guarde el objeto para agregarle un campo automatico
@@ -65,3 +84,14 @@ class ExperienceMain(TemplateView):
             return redirect('briefcase:experiences')
         args = {'form':form}
         return render(request, self.template_name, args)
+
+def curriculum(request):
+    params = UserProfile.objects.get(user=request.user)
+    studies = Studies.objects.filter(user=request.user)
+    experience = Experience.objects.filter(user=request.user)
+    args = {
+        'params':params,
+        'studies':studies,
+        'experience':experience,
+    }
+    return render(request, 'curriculum/index.html', args)

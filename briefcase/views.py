@@ -3,11 +3,11 @@ from django.views.generic import TemplateView
 
 from .models import Studies, Experience
 
-from .forms import AddStudyForm, AddExperience
+from .forms import AddStudyForm, AddExperienceForm
 
 # Create your views here.
 class StudyMain(TemplateView):
-    template_name='studies/studies.html'
+    template_name = 'studies/studies.html'
 
 # metodo get para traer el formulario
     def get(self, request, id=None):
@@ -47,9 +47,21 @@ class ExperienceMain(TemplateView):
     def get(self, request, id=None):
         if id:
             exp = Experience.objects.get(id=id)
-            form = AddExperience(instance=exp)
+            form = AddExperienceForm(instance=exp)
         else:
-            form = AddExperience()
+            form = AddExperienceForm()
         exp = Experience.objects.all()
         args = {'form':form, 'exp':exp}
+        return render(request, self.template_name, args)
+
+    def post(self, request):
+        form = AddExperienceForm(request.POST)
+        if form.is_valid():
+            # detener que guarde el objeto para agregarle un campo automatico
+            experience = form.save(commit=False)
+            experience.user = request.user
+            experience.save()
+            form = AddExperienceForm()
+            return redirect('briefcase:experiences')
+        args = {'form':form}
         return render(request, self.template_name, args)

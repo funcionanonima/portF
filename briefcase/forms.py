@@ -14,7 +14,7 @@ class AddStudyForm(forms.ModelForm):
             'show',
         )
 
-class AddExperience(forms.ModelForm):
+class AddExperienceForm(forms.ModelForm):
     """formulario para agregar una nueva "esperiencia"""
     class Meta:
         model = Experience

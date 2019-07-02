@@ -28,7 +28,7 @@ class HomeView(TemplateView):
         return render(request, self.template_name, args)
 
 def curriculums(request):
-    usrs = User.objects.all()
+    usrs = User.objects.all().exclude(id=request.user.id)
     args = {
         'usrs':usrs
     }

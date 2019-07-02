@@ -10,48 +10,65 @@
             <div class="container">
                 <h1 id="login">Curriculum {{user}}</h1>
                 <div class="section">
-                    <div class="row">
+                    <div class="row  valign-wrapper">
                         <div class="col s4">
-                                {% if user.userprofile.avatar %}  
-                            <img class="responsive-img" src="{{params.avatar.url}}" alt=""> <br>
+                            {% if user.userprofile.avatar %}  
+                            <img class="responsive-img" src="{{params.avatar.url}}" alt="Sin foto"> <br>
+                            {% else %}
+                            <p>No hay foto</p>
                             {% endif %}
                         </div>
-                        <div class="col s8">
+                        <div class="col s2">
+
+                        </div>
+                        <div class="col s6">
                             <h3>Informacion Básíca:</h3>
+                            {% if params.document %}
                             <ul>
                                 <li>Tipo Documento: {{params.documenttype}}</li>
                                 <li>Documento: {{params.document}}</li>
                                 <li>Estado Civil: {{params.civilstatus}}</li>
                                 <li>Grupo Etnico: {{params.ethnicgroup}}</li>
                                 <li>Género: {{params.genre}}</li>
-                            </ul>                            
+                            </ul>    
+                            {% else %}
+                            <p>No Registra Informacion</p>
+                            {% endif %}                        
                         </div>
-                    </div>
+                    </div>                    
                     <div class="row">
-                        <h3>Estudios:</h3>
-                        {% for study in studies %}
-                        <div class="col s3">                            
+                        <h3>Estudios:</h3>   
+                        {% if studies %}                 
+                        {% for study in studies %} 
+                        <div class="col s4">                                                                           
                             <ul>
                                 <li>Título: {{study.name}}</li>
                                 <li>Universidad: {{study.school}}</li>
                                 <li>Fecha Grado: {{study.gradedate}}</li>
+                            </ul>     
+                        </div>                         
+                        {% endfor %} 
+                        {% else %}
+                        <span>No Registra Estudios</span>  
+                        {% endif %}                                                                                                        
+                    </div>                
+                    <div class="row">
+                        <h3>Experiencia:</h3>
+                        {% if experience %}
+                        {% for exp in experience %}
+                        <div class="col s6">                                                                                
+                            <ul>
+                                <li>Cargo: {{exp.appointment}}</li>
+                                <li>Empresa: {{exp.company}}</li>
+                                <li>Fecha Inicio: {{exp.startdate}}</li>
+                                <li>Fecha Inicio: {{exp.enddate}}</li>
                             </ul>  
                         </div>
                         {% endfor %}
-                    </div>
-                    <div class="row">
-                            <h3>Experiencia:</h3>
-                            {% for exp in experience %}
-                            <div class="col s6">                                
-                                <ul>
-                                    <li>Cargo: {{exp.appointment}}</li>
-                                    <li>Empresa: {{exp.company}}</li>
-                                    <li>Fecha Inicio: {{exp.startdate}}</li>
-                                    <li>Fecha Inicio: {{exp.enddate}}</li>
-                                </ul>  
-                            </div>
-                            {% endfor %}
-                        </div>
+                        {% else %}
+                        <span>No Registra Experiencia</span>  
+                        {% endif %}                      
+                    </div>                    
                 </div>
             </div>
         </section>

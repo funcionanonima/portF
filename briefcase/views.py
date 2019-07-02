@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 
 from .models import Studies, Experience
 from accounts.models import UserProfile
+from django.contrib.auth.models import User
 
 from .forms import AddStudyForm, AddExperienceForm
 
@@ -87,10 +88,12 @@ class ExperienceMain(TemplateView):
 
 def curriculum(request, id=None):
     if id:
+        user = User.objects.get(id=id)
         params = UserProfile.objects.get(user=id)
         studies = Studies.objects.filter(user=id)
         experience = Experience.objects.filter(user=id)
         args = {
+            'user':user,
             'params':params,
             'studies':studies,
             'experience':experience,
@@ -105,3 +108,11 @@ def curriculum(request, id=None):
         'experience':experience,
     }
     return render(request, 'curriculum/index.html', args)
+
+def studydelete(request, id=None):
+    Studies.objects.get(id=id).delete()
+    return redirect('briefcase:studies')
+
+def experiencedelete(reqest, id=None):
+    Experience.objects.get(id=id).delete()
+    return redirect('briefcase:experiences')

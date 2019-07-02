@@ -10,11 +10,25 @@
             <div class="container">
                 <h1 id="login">Curriculums</h1>
                 <div class="section">
-                    <ul>
-                        {% for us in usrs %}
-                        <li><a href="{% url 'briefcase:curriculumparam' id=us.id %}">{{us}}</a></li>
-                        {% endfor %}
-                    </ul>
+                    <div class="row">
+                            {% for us in usrs %}
+                            <div class="col s6 m6">
+                                <div class="purple card horizontal">
+                                    <div class="card-image">
+                                        <img src="{{us.avatar.url}}">
+                                    </div>
+                                    <div class="card-stacked">
+                                    <div class="card-content">
+                                        <p>{{us}}</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="{% url 'briefcase:curriculumparam' id=us.id %}">Mas...</a>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>                    
+                            {% endfor %}
+                    </div>                    
                 </div>
             </div>
         </section>

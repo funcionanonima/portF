@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import StudyMain, ExperienceMain, curriculum
+from .views import StudyMain, ExperienceMain, curriculum, studydelete, experiencedelete
 
 app_name="briefcase"
 
@@ -11,4 +11,6 @@ urlpatterns = [
     path('experiences/<int:id>', ExperienceMain.as_view(), name='exp'),
     path('curriculum/', curriculum, name='curriculum'),
     path('curriculum/<int:id>', curriculum, name='curriculumparam'),
+    path('deletestudy/<int:id>', studydelete, name='deletestudy'),
+    path('deleteexperience/<int:id>', experiencedelete, name='deleteexperience'),
 ]

@@ -4,7 +4,7 @@ from .models import Studies, Experience
 
 class AddStudyForm(forms.ModelForm):
     """formulario para mostrar estudios"""
-    show = forms.Textarea()
+    show = forms.BooleanField(widget=forms.CheckboxInput(attrs={'type':'checkbox','class':'filled-in','checked':'checked'}))
     class Meta:
         model = Studies
         fields = (
@@ -15,7 +15,7 @@ class AddStudyForm(forms.ModelForm):
         )
 
 class AddExperienceForm(forms.ModelForm):
-    """formulario para agregar una nueva "esperiencia"""
+    """formulario para agregar una nueva "experiencia"""
     class Meta:
         model = Experience
         fields = (

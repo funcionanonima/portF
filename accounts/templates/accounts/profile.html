@@ -14,9 +14,11 @@
                     <div class="row">
                         <form method="POST" class="col s12">
                             <div class="row">
-                                {% if user.userprofile.avatar %}                       
-                                <a href="{{ user.userprofile.avatar.url }}"><img src="{{ user.userprofile.avatar.url }}" alt="nada"></a>
-                                {% endif %}
+                                <div class="col s4 ">
+                                        {% if user.userprofile.avatar %}                       
+                                        <a href="{{ user.userprofile.avatar.url }}"><img class="responsive-img" src="{{ user.userprofile.avatar.url }}" alt="nada"></a>
+                                        {% endif %}
+                                </div>
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">perm_identity</i>
                                     <label>{{ user.username }}</label>
